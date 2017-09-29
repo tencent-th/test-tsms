@@ -31,7 +31,7 @@ class Constants {
           }
           $now = new \DateTime();
           $random = rand();
-          $nonce = rand();
+          $nonce = 'nonce:' . rand();
           $nationcode = "66";
           $mobile = $_REQUEST['mobile'];
           $message = 'Hello this is a test SMS message sent at ' . $now->format('c');
@@ -80,12 +80,6 @@ class Constants {
         TRUE
       ),
     ];
-  }
-
-  public static function getRequestUrl() {
-    return sprintf(
-      'http://tsms.qq.com/Qsms/BackendSendSms?sdkappid=%s&random='
-    );
   }
 
   public static function getTestcaseSource($func) {
