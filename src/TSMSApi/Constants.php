@@ -103,6 +103,48 @@ class Constants {
         },
         TRUE
       ),
+      'send-sms-voice' => new Testcase(
+        'Send voice SMS',
+        function () {
+          if (!array_key_exists('mobile', $_REQUEST)) {
+            return 'Please supply mobile through HTTP params';
+          }
+          $now = new \DateTime();
+          $random = rand();
+          $nonce = 'nonce:' . rand();
+          $nationcode = "66";
+          $mobile = $_REQUEST['mobile'];
+          $message = $now->format('his');
+          $sig = hash('sha256', sprintf(
+            'appkey=%s&random=%d&time=%d&mobile=%s',
+            self::$APP_KEY,
+            $random,
+            $now->getTimestamp(),
+            $mobile
+          ));
+          $url = 'http://tsms.qq.com/Qsms/BackendSendSmsIVR?' . http_build_query([
+              'sdkappid' => self::$APP_ID,
+              'random' => $random
+            ]);
+
+          return APIRequest::create($url, [
+            'tel' => [
+              'nationcode' => $nationcode,
+              'mobile' => $mobile,
+            ],
+            'msg' => $message,
+            'playtimes' => 2,
+            'lang' => 'en',
+            'sig' => $sig,
+            'time' => $now->getTimestamp(),
+            'ext' => $nonce
+          ])->execute();
+        },
+        FALSE,
+        '1) Parameters are not consistent. Missing type, senderid, and extend
+2) No pause between repeating the numbers
+3) Occasionally fail to work'
+      ),
     ];
   }
 
