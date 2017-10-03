@@ -1,12 +1,10 @@
-# test-vodapi
+# test-tsms
 
-## Official documentation
+Website
+: http://tsms.qq.com/
 
-https://www.qcloud.com/document/product/266/7788
+User
+: http://tsms.qq.com/
 
-
-## Related packages
-
-* https://github.com/tencentyun/vod-php-server-sdk-v4
-
-.
+Pass
+: sanookqcloud123
