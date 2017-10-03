@@ -46,7 +46,8 @@ class Constants {
             'sdkappid' => self::$APP_ID,
             'random' => $random
           ]);
-          $body = [
+
+          return APIRequest::create($url, [
             'tel' => [
               'nationcode' => $nationcode,
               'mobile' => $mobile,
@@ -58,24 +59,7 @@ class Constants {
             'time' => $now->getTimestamp(),
             'extend' => '',
             'ext' => $nonce
-          ];
-
-          try {
-            $client = new Client();
-            $res = $client->request('POST', $url, ['json' => $body]);
-            return [
-              'code' => $res->getStatusCode(),
-              'result' => $res->getBody()->getContents()
-            ];
-          }
-          catch (ClientException $e) {
-            $res = $e->getResponse();
-            return [
-              'error' => true,
-              'code' => $res->getStatusCode(),
-              'result' => $res->getBody()->getContents()
-            ];
-          }
+          ])->execute();
         },
         TRUE
       ),
@@ -102,7 +86,8 @@ class Constants {
               'sdkappid' => self::$APP_ID,
               'random' => $random
             ]);
-          $body = [
+
+          return APIRequest::create($url, [
             'tel' => [
               'nationcode' => $nationcode,
               'mobile' => $mobile,
@@ -114,24 +99,7 @@ class Constants {
             'time' => $now->getTimestamp(),
             'extend' => '',
             'ext' => $nonce
-          ];
-
-          try {
-            $client = new Client();
-            $res = $client->request('POST', $url, ['json' => $body]);
-            return [
-              'code' => $res->getStatusCode(),
-              'result' => $res->getBody()->getContents()
-            ];
-          }
-          catch (ClientException $e) {
-            $res = $e->getResponse();
-            return [
-              'error' => true,
-              'code' => $res->getStatusCode(),
-              'result' => $res->getBody()->getContents()
-            ];
-          }
+          ])->execute();
         },
         TRUE
       ),
