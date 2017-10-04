@@ -254,7 +254,8 @@ class Constants {
           $store = new Store();
           return $store->all();
         },
-        TRUE
+        FALSE,
+        'Duplicated callback received'
       ),
     ];
   }
