@@ -11,3 +11,8 @@ if (mb_strlen($body) > 0) {
   $store = new Store();
   $store->insert($uri, $body);
 }
+
+echo json_encode([
+  'result' => 0,
+  'errmsg' => 'OK'
+]);
