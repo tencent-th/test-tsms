@@ -4,10 +4,11 @@ namespace TencentTH\TSMSApi;
 
 
 class Store {
+  private static $location = __DIR__ . '/../../data/data.db';
   private $sqlite = null;
 
-  public function __construct($location) {
-    $this->sqlite = new \SQLite3($location);
+  public function __construct() {
+    $this->sqlite = new \SQLite3(self::$location);
     $tables = $this->sqlite->query('
       SELECT name
       FROM sqlite_master
@@ -34,6 +35,16 @@ class Store {
       $this->sqlite->escapeString($uri),
       $this->sqlite->escapeString($content)
     ));
+  }
+
+  public function all() {
+    $res = $this->sqlite->query('SELECT * FROM callback ORDER BY time DESC');
+    $rows = [];
+    while ($row = $res->fetchArray(SQLITE3_ASSOC)) {
+      $rows[] = $row;
+    }
+
+    return $rows;
   }
 
 }

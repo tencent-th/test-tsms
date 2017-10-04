@@ -248,6 +248,14 @@ class Constants {
         '1) Validity is not correct, unregistered mobile phone number returned as valid e.g. 66867605527
 2) Carrier name is not valid'
       ),
+      'status-push' => new Testcase(
+        'Status Push',
+        function () {
+          $store = new Store();
+          return $store->all();
+        },
+        TRUE
+      ),
     ];
   }
 
