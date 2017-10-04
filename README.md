@@ -5,8 +5,3 @@ Website
 
 User
 : http://tsms.qq.com/
-
-Pass
-: sanookqcloud123
-
-.
