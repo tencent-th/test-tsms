@@ -7,7 +7,7 @@ class Constants {
 
   public static $APP_ID = 'ake@tencent.co.th';
   public static $APP_KEY = 'XKDeV2KlRHI3FqlT6aGzEfFIwq2xwXCR';
-  public static $SENDER_ID = '';
+  public static $SENDER_ID = 'JOOX';
 
   /**
    * @return Testcase[]
